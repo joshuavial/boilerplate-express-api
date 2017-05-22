@@ -14,8 +14,9 @@ router.get ('/', function (req, res) {
 })
 
 router.post('/', (req, res) => {
+  let {name, email} = req.body
   req.app.get('knex')('users')
-    .insert(req.body)
+    .insert({name, email})
     .then((result) => {
       res.status(201).send()
     })
