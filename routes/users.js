@@ -13,4 +13,12 @@ router.get ('/', function (req, res) {
     })
 })
 
+router.post('/', (req, res) => {
+  req.app.get('knex')('users')
+    .insert(req.body)
+    .then((result) => {
+      res.status(201).send()
+    })
+})
+
 module.exports = router
